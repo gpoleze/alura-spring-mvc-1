@@ -6,7 +6,10 @@ import br.com.casadocodigo.loja.models.TipoPreco;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class ProdutosController {
@@ -23,12 +26,20 @@ public class ProdutosController {
         return new ModelAndView("produtos/form").addObject("tipos", TipoPreco.values());
     }
 
-    @RequestMapping("casadocodigo/produtos")
+    @RequestMapping(value = "/produtos", method = RequestMethod.POST)
     public String gravar(Produto produto) {
         System.out.println(produto);
 
         produtoDAO.gravar(produto);
 
         return "produtos/ok";
+    }
+
+    @RequestMapping(value = "/produtos", method = RequestMethod.GET)
+    public ModelAndView list() {
+        System.out.println("Acessando a Página de listagem de produtos");
+        List<Produto> produtos = produtoDAO.list();
+
+        return new ModelAndView("produtos/list").addObject("produtos", produtos);
     }
 }

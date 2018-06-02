@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository     // This annotation defines that Srping will take care of this class
 @Transactional  // Defines that this class is Transactional and will be handled by the TransactionManager
@@ -16,5 +17,11 @@ public class ProdutoDAO {
 
     public void gravar(Produto produto) {
         manager.persist(produto);
+    }
+
+    public List<Produto> list() {
+        return manager
+                .createQuery("select p from Produto p", Produto.class)
+                .getResultList();
     }
 }
