@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
+@RequestMapping("produtos")
 public class ProdutosController {
 
     @Autowired
@@ -20,13 +21,13 @@ public class ProdutosController {
     // by any kind of configuration
     private ProdutoDAO produtoDAO;
 
-    @RequestMapping("/produtos/form")
+    @RequestMapping("/form")
     public ModelAndView form() {
         System.out.println("Entrando na Página de cadastro de produtos");
         return new ModelAndView("produtos/form").addObject("tipos", TipoPreco.values());
     }
 
-    @RequestMapping(value = "/produtos", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String gravar(Produto produto) {
         System.out.println(produto);
 
@@ -35,7 +36,7 @@ public class ProdutosController {
         return "produtos/ok";
     }
 
-    @RequestMapping(value = "/produtos", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView list() {
         System.out.println("Acessando a Página de listagem de produtos");
         List<Produto> produtos = produtoDAO.list();
