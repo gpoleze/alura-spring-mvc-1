@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -28,12 +29,14 @@ public class ProdutosController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String gravar(Produto produto) {
+    public ModelAndView gravar(Produto produto, RedirectAttributes redirectAttributes) {
         System.out.println(produto);
-
         produtoDAO.gravar(produto);
 
-        return "produtos/ok";
+        // with the redirectAttributes using a flah attrinute, we keep the attibute from one request to the next one
+        redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso");
+
+        return new ModelAndView("redirect:produtos");
     }
 
     @RequestMapping(method = RequestMethod.GET)

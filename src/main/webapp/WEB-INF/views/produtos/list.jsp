@@ -27,6 +27,9 @@
     <a href="/produtos">Listar Produtos</a>
 </nav>
 <h1>Lista de Produtos</h1>
+
+    <div>${sucesso}</div>
+
 <table>
     <thead>
     <tr>
