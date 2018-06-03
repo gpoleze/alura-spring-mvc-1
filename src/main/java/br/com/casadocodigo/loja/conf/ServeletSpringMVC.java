@@ -3,7 +3,10 @@
 package br.com.casadocodigo.loja.conf;
 
 import br.com.casadocodigo.loja.daos.ProdutoDAO;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 public class ServeletSpringMVC extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
@@ -22,5 +25,14 @@ public class ServeletSpringMVC extends AbstractAnnotationConfigDispatcherServlet
     protected String[] getServletMappings() {
         //  método responsável por mapear as URL do meu projeto
         return new String[]{"/"};
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        // Aqui poderemos fazer com que o Srping/Hobernate usem um encoding differente
+        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+        encodingFilter.setEncoding("UTF-8");
+
+        return new Filter[] {encodingFilter};
     }
 }
