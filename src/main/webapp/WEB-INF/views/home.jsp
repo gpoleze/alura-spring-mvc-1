@@ -15,6 +15,7 @@
         <nav>
             <a href="/">Home</a>
             <a href="/produtos/form">Cadastrar Produtos</a>
+            <a href="/produtos">Listar Produtos</a>
         </nav>
         <table>
             <tr>

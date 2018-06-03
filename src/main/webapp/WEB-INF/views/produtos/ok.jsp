@@ -16,6 +16,11 @@
     <title>Casa do Código</title>
 </head>
 <body>
+<nav>
+    <a href="/">Home</a>
+    <a href="/produtos/form">Cadastrar Produtos</a>
+    <a href="/produtos">Listar Produtos</a>
+</nav>
 <h1>Cadastro realizado com sucesso</h1>
 <a href="/produtos/form">Voltar</a>
 </body>

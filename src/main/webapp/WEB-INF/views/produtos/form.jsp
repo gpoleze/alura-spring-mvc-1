@@ -22,8 +22,9 @@
     <nav>
         <a href="/">Home</a>
         <a href="/produtos/form">Cadastrar Produtos</a>
+        <a href="/produtos">Listar Produtos</a>
     </nav>
-<form action="/casadocodigo/produtos" method="POST">
+<form action="/produtos" method="POST">
     <div>
         <label for="titulo">Título</label>
         <input type="text" id="titulo" name="titulo">
