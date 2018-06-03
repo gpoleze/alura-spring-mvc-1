@@ -123,6 +123,21 @@
             <version>5.1.33</version>
         </dependency>
 
-
+        <!-- JSR 380 with Hibernate Validator http://www.baeldung.com/javax-validation -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.0.10.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator-annotation-processor</artifactId>
+            <version>6.0.10.Final</version>
+        </dependency>
     </dependencies>
 </project>

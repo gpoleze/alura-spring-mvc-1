@@ -3,13 +3,18 @@ package br.com.casadocodigo.loja.controllers;
 import br.com.casadocodigo.loja.daos.ProdutoDAO;
 import br.com.casadocodigo.loja.models.Produto;
 import br.com.casadocodigo.loja.models.TipoPreco;
+import br.com.casadocodigo.loja.validation.ProdutoValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -22,6 +27,11 @@ public class ProdutosController {
     // by any kind of configuration
     private ProdutoDAO produtoDAO;
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(new ProdutoValidation());
+    }
+
     @RequestMapping("/form")
     public ModelAndView form() {
         System.out.println("Entrando na Página de cadastro de produtos");
@@ -29,8 +39,12 @@ public class ProdutosController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView gravar(Produto produto, RedirectAttributes redirectAttributes) {
+    public ModelAndView gravar(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {
         System.out.println(produto);
+
+        if (result.hasErrors())
+            return form();
+
         produtoDAO.gravar(produto);
 
         // with the redirectAttributes using a flah attrinute, we keep the attibute from one request to the next one
