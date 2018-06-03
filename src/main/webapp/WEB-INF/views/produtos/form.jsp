@@ -8,6 +8,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 
 <!doctype html>
 <html lang="en">
@@ -17,40 +19,53 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Casa do Código</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script defer src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        .invalid-feedback {
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/produtos/form">Cadastrar Produtos</a>
-        <a href="/produtos">Listar Produtos</a>
-    </nav>
-<form action="/produtos" method="POST">
-    <div>
+<nav class="nav">
+    <a class="nav-link" href="/">Home</a>
+    <a class="nav-link" href="/produtos/form">Cadastrar Produtos</a>
+    <a class="nav-link" href="/produtos">Listar Produtos</a>
+</nav>
+<form:form action="${s:mvcUrl('PC#gravar').build()}" method="POST" modelAttribute="produto" class="container">
+    <div class="form-group">
         <label for="titulo">Título</label>
-        <input type="text" id="titulo" name="titulo">
+        <input type="text" id="titulo" name="titulo" class="form-control">
+        <div class="invalid-feedback"><form:errors path="titulo"/></div>
     </div>
-    <div>
+    <div class="form-group">
         <label for="descricao">Descrição</label>
-        <textarea rows="10" cols="20" id="descricao" name="descricao"></textarea>
+        <textarea rows="10" cols="20" id="descricao" name="descricao" class="form-control"></textarea>
+        <div class="invalid-feedback"><form:errors path="descricao"/></div>
     </div>
-    <div>
+    <div class="form-group">
         <label for="paginas">Páginas</label>
-        <input type="text" id="paginas" name="paginas">
+        <input type="text" id="paginas" name="paginas" class="form-control">
+        <div class="invalid-feedback"><form:errors path="paginas"/></div>
     </div>
 
-    <div title="precos">
+
+    <div title="precos" class="form-group">
         <c:forEach items="${tipos }" var="tipoPreco" varStatus="status">
             <div>
-                <label >${tipoPreco}
+                <label>${tipoPreco}
                     <input type="text" name="precos[${status.index}].valor">
-                    <input type="hidden" name="precos[${status.index}].tipo" value="${tipoPreco}">
+                    <input type="hidden" name="precos[${status.index}].tipo" value="${tipoPreco}" class="form-control">
                 </label>
             </div>
         </c:forEach>
     </div>
 
-    <input type="submit" id="cadastrar" name="cadastrar" value="Cadastrar">
+    <input type="submit" id="cadastrar" name="cadastrar" value="Cadastrar" class="btn btn-primary">
     </div>
-</form>
+</form:form>
 </body>
 </html>
