@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("produtos")
+@RequestMapping("/produtos")
 public class ProdutosController {
 
     @Autowired
@@ -50,7 +50,7 @@ public class ProdutosController {
         // with the redirectAttributes using a flah attrinute, we keep the attibute from one request to the next one
         redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso");
 
-        return new ModelAndView("redirect:produtos");
+        return new ModelAndView("redirect:/produtos");
     }
 
     @RequestMapping(method = RequestMethod.GET)
