@@ -36,22 +36,30 @@
     <a class="nav-link" href="/produtos">Listar Produtos</a>
 </nav>
 <form:form action="${s:mvcUrl('PC#gravar').build()}" method="POST" modelAttribute="produto" class="container">
+
     <div class="form-group">
         <label for="titulo">Título</label>
         <input type="text" id="titulo" name="titulo" class="form-control">
         <div class="invalid-feedback"><form:errors path="titulo"/></div>
     </div>
+
     <div class="form-group">
         <label for="descricao">Descrição</label>
         <textarea rows="10" cols="20" id="descricao" name="descricao" class="form-control"></textarea>
         <div class="invalid-feedback"><form:errors path="descricao"/></div>
     </div>
+
     <div class="form-group">
         <label for="paginas">Páginas</label>
         <input type="text" id="paginas" name="paginas" class="form-control">
         <div class="invalid-feedback"><form:errors path="paginas"/></div>
     </div>
 
+    <div class="form-group">
+        <label for="dataLancamento">Data de Lançamento</label>
+        <input type="text" id="dataLancamento" name="dataLancamento" class="form-control">
+        <div class="invalid-feedback"><form:errors path="dataLancamento"/></div>
+    </div>
 
     <div title="precos" class="form-group">
         <c:forEach items="${tipos }" var="tipoPreco" varStatus="status">
