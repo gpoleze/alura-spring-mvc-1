@@ -39,25 +39,25 @@
 
     <div class="form-group">
         <label for="titulo">Título</label>
-        <input type="text" id="titulo" name="titulo" class="form-control">
+        <form:input path="titulo" name="titulo" class="form-control"/>
         <div class="invalid-feedback"><form:errors path="titulo"/></div>
     </div>
 
     <div class="form-group">
         <label for="descricao">Descrição</label>
-        <textarea rows="10" cols="20" id="descricao" name="descricao" class="form-control"></textarea>
+        <form:textarea rows="10" cols="20" path="descricao" name="descricao" class="form-control"/>
         <div class="invalid-feedback"><form:errors path="descricao"/></div>
     </div>
 
     <div class="form-group">
         <label for="paginas">Páginas</label>
-        <input type="text" id="paginas" name="paginas" class="form-control">
+        <form:input path="paginas" name="paginas" class="form-control"/>
         <div class="invalid-feedback"><form:errors path="paginas"/></div>
     </div>
 
     <div class="form-group">
         <label for="dataLancamento">Data de Lançamento</label>
-        <input type="text" id="dataLancamento" name="dataLancamento" class="form-control">
+        <form:input path="dataLancamento" name="dataLancamento" class="form-control"/>
         <div class="invalid-feedback"><form:errors path="dataLancamento"/></div>
     </div>
 
@@ -65,15 +65,14 @@
         <c:forEach items="${tipos }" var="tipoPreco" varStatus="status">
             <div>
                 <label>${tipoPreco}
-                    <input type="text" name="precos[${status.index}].valor">
-                    <input type="hidden" name="precos[${status.index}].tipo" value="${tipoPreco}" class="form-control">
+                    <form:input path="precos[${status.index}].valor"/>
+                    <form:hidden path="precos[${status.index}].tipo" value="${tipoPreco}" class="form-control" />
                 </label>
             </div>
         </c:forEach>
     </div>
 
     <input type="submit" id="cadastrar" name="cadastrar" value="Cadastrar" class="btn btn-primary">
-    </div>
 </form:form>
 </body>
 </html>
