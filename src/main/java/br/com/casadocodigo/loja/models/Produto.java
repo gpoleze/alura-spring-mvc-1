@@ -18,6 +18,8 @@ public class Produto {
     private String descricao;
     private int paginas;
 
+    private String sumarioPath;
+
     @DateTimeFormat
     private Calendar dataLancamento;
 
@@ -82,5 +84,13 @@ public class Produto {
 
     public void setDataLancamento(Calendar dataLancamento) {
         this.dataLancamento = dataLancamento;
+    }
+
+    public String getSumarioPath() {
+        return sumarioPath;
+    }
+
+    public void setSumarioPath(String sumarioPath) {
+        this.sumarioPath = sumarioPath;
     }
 }

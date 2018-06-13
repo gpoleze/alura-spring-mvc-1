@@ -2,11 +2,12 @@
 
 package br.com.casadocodigo.loja.conf;
 
-import br.com.casadocodigo.loja.daos.ProdutoDAO;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
 
 public class ServeletSpringMVC extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
@@ -33,6 +34,12 @@ public class ServeletSpringMVC extends AbstractAnnotationConfigDispatcherServlet
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
         encodingFilter.setEncoding("UTF-8");
 
-        return new Filter[] {encodingFilter};
+        return new Filter[]{encodingFilter};
+    }
+
+    // Método necessário para que o Spring entenda que lidaremos com um arquivo
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        registration.setMultipartConfig(new MultipartConfigElement(""));
     }
 }
