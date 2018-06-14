@@ -24,4 +24,9 @@ public class ProdutoDAO {
                 .createQuery("select p from Produto p", Produto.class)
                 .getResultList();
     }
+
+    public Produto find(int id) {
+        String query = "SELECT DISTINCT (p) FROM Produto p JOIN fetch p.precos preco WHERE p.id = :id";
+        return manager.createQuery(query, Produto.class).setParameter("id", id).getSingleResult();
+    }
 }
