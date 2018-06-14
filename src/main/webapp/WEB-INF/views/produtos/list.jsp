@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%--
   Created by IntelliJ IDEA.
   User: gabriel
@@ -28,7 +29,7 @@
 </nav>
 <h1>Lista de Produtos</h1>
 
-    <div>${sucesso}</div>
+<div>${sucesso}</div>
 
 <table>
     <thead>
@@ -41,7 +42,9 @@
     <tbody>
     <c:forEach items="${produtos}" var="produto">
         <tr>
-            <td>${produto.titulo}</td>
+            <td>
+                <a href="${spring:mvcUrl('PC#detalhe').arg(0,produto.id).build()}">${produto.titulo}</a>
+            </td>
             <td>${produto.descricao}</td>
             <td>${produto.paginas}</td>
         </tr>
